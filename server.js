@@ -269,9 +269,7 @@ class CarService {
 carRepository = new CarRepository(db);
 carService = new CarService(carRepository);
 
-// API Routes
 
-// 1. View All Cars
 app.get('/api/cars', async (req, res) => {
   try {
     const cars = await carService.listCars();
@@ -291,7 +289,6 @@ app.get('/api/cars', async (req, res) => {
   }
 });
 
-// 2. Add Car
 app.post('/api/cars/add', async (req, res) => {
   const { id, model, rate, serviceDate, mileage } = req.body;
 
@@ -308,7 +305,6 @@ app.post('/api/cars/add', async (req, res) => {
   }
 });
 
-// 3. Rent a Car
 app.post('/api/cars/rent', async (req, res) => {
   const { id } = req.body;
 
@@ -321,7 +317,6 @@ app.post('/api/cars/rent', async (req, res) => {
   }
 });
 
-// 4. Return a Car
 app.post('/api/cars/return', async (req, res) => {
   const { id } = req.body;
 
@@ -337,7 +332,6 @@ app.post('/api/cars/return', async (req, res) => {
   }
 });
 
-// 5. Search Car by ID
 app.get('/api/cars/search/:id', async (req, res) => {
   const { id } = req.params;
 
@@ -359,7 +353,6 @@ Mileage: ${car.mileage} km
   }
 });
 
-// 6. Check Availability
 app.get('/api/cars/availability/:id', async (req, res) => {
   const { id } = req.params;
 
@@ -372,7 +365,6 @@ app.get('/api/cars/availability/:id', async (req, res) => {
   }
 });
 
-// 7. Update Maintenance Info
 app.put('/api/cars/maintenance/:id', async (req, res) => {
   const { id } = req.params;
   const { serviceDate, mileage } = req.body;
@@ -386,22 +378,19 @@ app.put('/api/cars/maintenance/:id', async (req, res) => {
   }
 });
 
-// Serve static files
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Serve index.html for all other routes
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 const PORT = 3000;
 app.listen(PORT, () => {
-  console.log(`\n🚗 Car Rental System Server`);
+  console.log(`\n Car Rental System Server`);
   console.log(`Server running on http://localhost:${PORT}`);
   console.log(`Database: ${dbPath}\n`);
 });
 
-// Close database on shutdown
 process.on('SIGINT', () => {
   db.close((err) => {
     if (err) {
