@@ -47,7 +47,7 @@ public:
 
     virtual void display() const {
         std::cout << "ID: " << id << ", Model: " << model << ", Rate: Rs. " << dailyRate
-                  << ", Available: " << (isAvailable ? "Yes" : "No") << "\n";
+                  << ", Available: " << (isAvailable ? "Yes " : "No ") << "\n";
     }
 
     int getId() const { return id; }
@@ -279,7 +279,7 @@ int main() {
         Car* car = findCarById(cars, carCount, id);
         MaintainedCar* maintainedCar = dynamic_cast<MaintainedCar*>(car);
         if (maintainedCar) {
-            cout << "Enter Last Service Date (YYYY-MM-DD): ";
+            cout << "Enter Last Service Date (YYYY - MM - DD): ";
             getline(cin, lastServiceDate);
             cout << "Enter Mileage: ";
             cin >> mileage;
